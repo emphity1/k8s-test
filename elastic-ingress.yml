@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /_cluster/health
+        pathType: Prefix
+        backend:
+          service:
+            name: elastic-service
+            port:
+              number: 9200
